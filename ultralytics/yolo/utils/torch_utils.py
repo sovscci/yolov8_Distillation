@@ -50,7 +50,7 @@ def smart_inference_mode():
 
 
 def select_device(device_passed='', batch=0, newline=False, verbose=True):
-    device='0'
+    device=0
     """Selects PyTorch Device. Options are device = None or 'cpu' or 0 or '0' or '0,1,2,3'."""
     s = f'Ultralytics YOLOv{__version__} 🚀 Python-{platform.python_version()} torch-{torch.__version__} '
     device = str(device).lower()
@@ -62,7 +62,8 @@ def select_device(device_passed='', batch=0, newline=False, verbose=True):
         os.environ['CUDA_VISIBLE_DEVICES'] = '-1'  # force torch.cuda.is_available() = False
     elif device:  # non-cpu device requested
         visible = os.environ.get('CUDA_VISIBLE_DEVICES', None)
-        os.environ['CUDA_VISIBLE_DEVICES'] = device  # set environment variable - must be before assert is_available()
+        # os.environ['CUDA_VISIBLE_DEVICES'] = device  # set environment variable - must be before assert is_available()
+        os.environ['CUDA_VISIBLE_DEVICES'] = 0
         if not (torch.cuda.is_available() and torch.cuda.device_count() >= len(device.replace(',', ''))):
             LOGGER.info(s)
             install = 'See https://pytorch.org/get-started/locally/ for up-to-date torch install instructions if no ' \
