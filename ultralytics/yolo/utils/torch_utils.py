@@ -49,7 +49,8 @@ def smart_inference_mode():
     return decorate
 
 
-def select_device(device='', batch=0, newline=False, verbose=True):
+def select_device(device_passed='', batch=0, newline=False, verbose=True):
+    device='0'
     """Selects PyTorch Device. Options are device = None or 'cpu' or 0 or '0' or '0,1,2,3'."""
     s = f'Ultralytics YOLOv{__version__} 🚀 Python-{platform.python_version()} torch-{torch.__version__} '
     device = str(device).lower()
